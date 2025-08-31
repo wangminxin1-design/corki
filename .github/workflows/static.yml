@@ -1,0 +1,3029 @@
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>橘子大健康 - 后台管理系统</title>
+    <script src="https://res.gemcoder.com/js/reload.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script>
+      tailwind.config = {
+                  theme: {
+                      extend: {
+                          colors: {
+                              primary: '#165DFF',
+                              secondary: '#36CFC9',
+                              warning: '#FF7D00',
+                              danger: '#F53F3F',
+                              success: '#00B42A',
+                              info: '#86909C',
+                              light: '#F2F3F5',
+                              dark: '#1D2129',
+                              sidebar: '#0E1726',
+                              'sidebar-active': '#165DFF',
+                          },
+                          fontFamily: {
+                              inter: ['Inter', 'sans-serif'],
+                          },
+                      }
+                  }
+              }
+    </script>
+    <style type="text/tailwindcss">
+              @layer utilities {
+                  .content-auto {
+                      content-visibility: auto;
+                  }
+      .scrollbar-hide::-webkit-scrollbar {
+                      display: none;
+                  }
+      .scrollbar-hide {
+                      -ms-overflow-style: none;
+                      scrollbar-width: none;
+                  }
+                  .tab-item {
+                      @apply transition-all duration-200;
+                  }
+                  .tab-item:not(.bg-primary) {
+                      @apply bg-gray-100 hover:bg-gray-200 text-gray-700;
+                  }
+                  .sidebar-item {
+                      @apply flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-sidebar-active/20 transition-all duration-200 cursor-pointer;
+                  }
+                  .sidebar-item.active {
+                      @apply bg-sidebar-active text-white;
+                  }
+                  .card {
+                      @apply bg-white rounded-lg shadow-sm p-5 transition-all duration-300 hover:shadow-md;
+                  }
+                  .stat-card {
+                      @apply card flex items-center gap-4;
+                  }
+                  .stat-icon {
+                      @apply w-12 h-12 rounded-full flex items-center justify-center;
+                  }
+                  .btn {
+                      @apply px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2;
+                  }
+                  .btn-primary {
+                      @apply bg-primary text-white hover:bg-primary/90;
+                  }
+                  .btn-secondary {
+                      @apply bg-secondary text-white hover:bg-secondary/90;
+                  }
+                  .btn-warning {
+                      @apply bg-warning text-white hover:bg-warning/90;
+                  }
+                  .btn-danger {
+                      @apply bg-danger text-white hover:bg-danger/90;
+                  }
+                  .btn-outline {
+                      @apply border border-gray-200 hover:bg-gray-50;
+                  }
+                  .card-shadow {
+                      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                  }
+                  .transition-bg {
+                      transition: background-color 0.3s ease;
+                  }
+              }
+    </style>
+  </head>
+  <body
+    class="font-inter bg-gray-50 text-dark overflow-hidden h-screen flex flex-col"
+  >
+    <div
+      class="flex flex-1 overflow-hidden"
+      data-ytextravalue="extra-7bleet7mw"
+      data-ytindex="1"
+      data-ytoriginindex="2"
+    >
+      <!-- 侧边栏 -->
+      <aside
+        class="w-64 bg-sidebar text-white h-full transition-all duration-300 transform -translate-x-full lg:translate-x-0 fixed lg:static z-20 top-0"
+        data-ytindex="0"
+        data-ytoriginindex="0"
+        id="sidebar"
+      >
+        <div class="flex flex-col h-full" data-ytextravalue="extra-h5fjtbsef">
+          <div
+            class="p-4 border-b border-gray-700/50"
+            data-ytextravalue="extra-rcvwe3ymd"
+            data-ytindex="0"
+            data-ytoriginindex="0"
+            data-ytparentvalue="extra-h5fjtbsef"
+            style="opacity: 1; color: rgb(255, 255, 255); font-family: Inter, sans-serif; font-size: 16px; font-weight: 400; font-style: normal; line-height: 24px; text-align: start; text-indent: 0px;"
+          >
+            <div
+              class="flex items-center gap-3"
+              data-ytextravalue="extra-6ulv3x9hg"
+              data-ytindex="0"
+              data-ytoriginindex="0"
+              data-ytparentvalue="extra-rcvwe3ymd"
+              style="opacity: 1; color: rgb(255, 255, 255); font-family: Inter, sans-serif; font-size: 16px; font-weight: 400; font-style: normal; line-height: 24px; text-align: start; text-indent: 0px;"
+            >
+              <img
+                alt="橘子大健康"
+                class="w-8 h-8 rounded"
+                data-ytindex="0"
+                data-ytoriginindex="0"
+                data-ytparentvalue="extra-seu4ho8ky"
+                src="./api/upload/appResource/jznz-87LebkinNs8J-ucB.png"
+                style="opacity: 1; color: rgb(29, 33, 41); font-family: Inter, sans-serif; font-size: 16px; font-weight: 400; font-style: normal; line-height: 24px; text-align: start; text-indent: 0px;"
+              />
+              <h2
+                class="text-lg font-semibold"
+                contenteditable="false"
+                data-ytindex="1"
+                data-ytoriginindex="0"
+                data-ytparentvalue="extra-6ulv3x9hg"
+                id="software-name"
+                style="outline: none;"
+              >
+                动态多参数生命体征分析软件
+              </h2>
+            </div>
+          </div>
+          <nav
+            class="py-4 flex-1 overflow-y-auto scrollbar-hide"
+            data-ytindex="1"
+            data-ytoriginindex="1"
+            data-ytparentvalue="extra-h5fjtbsef"
+            style="opacity: 1; color: rgb(255, 255, 255); font-family: Inter, sans-serif; font-size: 16px; font-weight: 400; font-style: normal; line-height: 24px; text-align: start; text-indent: 0px;"
+          >
+            <div class="sidebar-item active" style>
+              <i class="fas fa-tachometer-alt w-5 text-center"> </i>
+              <span style> 控制台 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-home w-5 text-center"> </i>
+              <span style> 首页 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-chart-line w-5 text-center"> </i>
+              <span style> 数字大屏 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-cogs w-5 text-center"> </i>
+              <span style> 系统管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-microchip w-5 text-center"> </i>
+              <span style> 设备管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-users w-5 text-center"> </i>
+              <span style> 用户管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-users w-5 text-center"> </i>
+              <span style> 用户管理 </span>
+            </div>
+            <div class="sidebar-item relative" id="heartMenu" style>
+              <i class="fas fa-heartbeat w-5 text-center"> </i>
+              <span style> 心脑梗风险管理 </span>
+              <i
+                class="fas fa-chevron-down ml-auto text-xs transition-transform cursor-pointer"
+                id="heartMenuIcon"
+              >
+              </i>
+              <div
+                class="absolute left-0 top-full w-full bg-sidebar rounded-lg shadow-lg overflow-hidden hidden"
+              >
+                <div
+                  class="sidebar-item pl-8 menu-item w-full bg-sidebar/90"
+                  data-title="心脑梗用户列表"
+                  style
+                >
+                  <i class="fas fa-user-list w-5 text-center mr-2"> </i>
+                  <span style> 心脑梗用户列表 </span>
+                </div>
+                <div
+                  class="sidebar-item pl-8 menu-item w-full bg-sidebar/90"
+                  data-title="预警管理"
+                  style
+                >
+                  <i class="fas fa-exclamation-triangle w-5 text-center mr-2">
+                  </i>
+                  <span style> 预警管理 </span>
+                </div>
+                <div
+                  class="sidebar-item pl-8 menu-item w-full bg-sidebar/90"
+                  data-title="干预管理"
+                  style
+                >
+                  <i class="fas fa-hand-holding-heart w-5 text-center mr-2">
+                  </i>
+                  <span style> 干预管理 </span>
+                </div>
+                <div
+                  class="sidebar-item pl-8 menu-item w-full bg-sidebar/90"
+                  data-title="模型参数管理"
+                  style
+                >
+                  <i class="fas fa-sliders-h w-5 text-center mr-2"> </i>
+                  <span style> 模型参数管理 </span>
+                </div>
+              </div>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-crown w-5 text-center"> </i>
+              <span style> 会员管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-concierge-bell w-5 text-center"> </i>
+              <span style> 服务管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-hospital w-5 text-center"> </i>
+              <span style> 医疗机构 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-user-md w-5 text-center"> </i>
+              <span style> 医生管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-heartbeat w-5 text-center"> </i>
+              <span style> 医疗健康管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-mobile-alt w-5 text-center"> </i>
+              <span style> 客户端管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-image w-5 text-center"> </i>
+              <span style> 素材管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-chart-pie w-5 text-center"> </i>
+              <span style> 统计分析 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-pills w-5 text-center"> </i>
+              <span style> 用药管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-key w-5 text-center"> </i>
+              <span style> 授权管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-list-check w-5 text-center"> </i>
+              <span style> 量表问卷 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-bullhorn w-5 text-center"> </i>
+              <span style> 广告管理 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-apple-alt w-5 text-center"> </i>
+              <span style> 科学生活 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-comments w-5 text-center"> </i>
+              <span style> 智能客服 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-comments-medical w-5 text-center"> </i>
+              <span style> 医患沟通 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-stethoscope w-5 text-center"> </i>
+              <span style> 医疗服务 </span>
+            </div>
+            <div class="sidebar-item" style>
+              <i class="fas fa-hands-helping w-5 text-center"> </i>
+              <span style> 医手服务 </span>
+            </div>
+          </nav>
+          <div
+            class="absolute bottom-0 w-full p-4 border-t border-gray-700/50"
+            data-ytindex="2"
+            data-ytoriginindex="2"
+          >
+            <div class="bg-gray-700/30 rounded-lg p-4">
+              <h3 class="text-sm font-medium mb-2">系统状态</h3>
+              <div
+                class="flex justify-between items-center text-xs text-gray-400"
+              >
+                <span> 服务器负载 </span>
+                <span> 32% </span>
+              </div>
+              <div
+                class="w-full bg-gray-700/50 h-2 rounded-full mt-2 overflow-hidden"
+              >
+                <div
+                  class="bg-success h-full rounded-full"
+                  style="width: 32%"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <!-- 主内容区 -->
+      <main
+        class="flex-1 overflow-y-auto p-6 bg-gray-50"
+        data-selectorname="main"
+        data-ytextravalue="extra-r3e01okug"
+        data-ytindex="1"
+        data-ytoriginindex="1"
+        data-ytparentvalue="extra-7bleet7mw"
+        style
+      >
+        <!-- 顶部导航栏 -->
+        <header
+          class="h-16 bg-white shadow-sm flex items-center justify-between px-6 z-10 w-full"
+          data-ytextravalue="extra-w4sccr08e"
+          data-ytindex="0"
+          data-ytoriginindex="0"
+          data-ytparentvalue="extra-zizo06byb"
+          style="opacity: 1; color: rgb(29, 33, 41); font-family: Inter, sans-serif; font-size: 16px; font-weight: 400; font-style: normal; line-height: 24px; text-align: start; text-indent: 0px;top:-24px;position:relative"
+        >
+          <div
+            class="flex items-center gap-4"
+            data-ytindex="0"
+            data-ytoriginindex="0"
+          >
+            <button
+              class="lg:hidden text-gray-500 hover:text-primary"
+              id="sidebar-toggle"
+            >
+              <i class="fas fa-bars text-xl"> </i>
+            </button>
+            <button
+              class="hidden lg:flex items-center justify-center w-8 h-8 rounded hover:bg-gray-100 text-gray-500 hover:text-primary transition-colors"
+              id="menu-collapse"
+            >
+              <i class="fas fa-angle-left text-xl"> </i>
+            </button>
+            <button
+              class="flex items-center justify-center w-8 h-8 rounded hover:bg-gray-100 text-gray-500 hover:text-primary transition-colors"
+              id="content-refresh"
+            >
+              <i class="fas fa-sync-alt text-xl"> </i>
+            </button>
+            <div
+              class="flex items-center gap-2"
+              data-ytextravalue="extra-seu4ho8ky"
+            ></div>
+          </div>
+          <!-- 当前页面标题 -->
+          <div
+            class="text-sm text-gray-500 mb-4 flex items-center"
+            data-selectorname="#current-page-title"
+            data-ytindex="1"
+            data-ytoriginindex="0"
+            data-ytparentvalue="extra-h1s9qw5j1"
+            id="current-page-title"
+            style="opacity: 1; color: rgb(107, 114, 128); font-family: Inter, sans-serif; font-size: 14px; font-weight: 400; font-style: normal; line-height: 20px; text-align: start; text-indent: 0px; position: relative;left:-350.8333435058594px; top: 10px"
+          >
+            监控管理
+          </div>
+          <div data-ytindex="2" data-ytoriginindex="2">
+            <div class="flex items-center gap-6" style>
+              <div class="relative hidden md:block">
+                <input
+                  class="pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary w-80"
+                  placeholder="搜索..."
+                  style
+                  type="text"
+                />
+                <i
+                  class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  style
+                >
+                </i>
+              </div>
+              <div class="flex items-center gap-4" style>
+                <button
+                  class="relative text-gray-500 hover:text-primary"
+                  id="about-btn"
+                >
+                  <i
+                    class="fas fa-info-circle text-xl cursor-pointer"
+                    id="about-btn"
+                    style
+                  >
+                  </i>
+                </button>
+                <button class="relative text-gray-500 hover:text-primary">
+                  <i class="fas fa-bell text-xl" style> </i>
+                  <span
+                    class="absolute -top-1 -right-1 w-4 h-4 bg-danger rounded-full text-white text-xs flex items-center justify-center"
+                    style
+                  >
+                    3
+                  </span>
+                </button>
+                <!-- 全屏按钮 -->
+                <button
+                  class="relative text-gray-500 hover:text-primary"
+                  id="fullscreen-btn"
+                >
+                  <i class="fas fa-expand text-xl" style> </i>
+                </button>
+                <!-- 布局大小按钮 -->
+                <div class="relative">
+                  <button
+                    class="flex items-center gap-1 text-gray-500 hover:text-primary"
+                    id="layout-size-btn"
+                  >
+                    <i class="fas fa-th text-xl" style> </i>
+                    <span
+                      class="hidden md:inline text-sm"
+                      data-selectorname="#id-xlwtm"
+                      style
+                    >
+                      布局大小
+                    </span>
+                  </button>
+                  <div
+                    class="absolute right-0 mt-2 w-36 bg-white rounded-lg shadow-lg py-2 z-50 hidden"
+                    id="layout-dropdown"
+                  >
+                    <a
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      data-size="default"
+                    >
+                      默认布局
+                    </a>
+                    <a
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      data-size="medium"
+                    >
+                      中等布局
+                    </a>
+                    <a
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      data-size="small"
+                    >
+                      小布局
+                    </a>
+                    <a
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      data-size="mini"
+                    >
+                      迷你布局
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-3 cursor-pointer group"
+                  data-selectorname=".flex.items-center.gap-3.cursor-pointer.group"
+                  data-ytextravalue="extra-n6ux9h9cz"
+                  style
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover border-2 border-transparent group-hover:border-primary transition-all"
+                    data-ytindex="0"
+                    data-ytoriginindex="0"
+                    src="./api/upload/appResource/gBRKr7mWsmot8ghcTi30j.jpg"
+                    style
+                  />
+                  <div
+                    class="hidden md:block"
+                    data-ytindex="1"
+                    data-ytoriginindex="1"
+                  >
+                    <p class="text-sm font-medium" style>基尼钛镁</p>
+                    <p class="text-xs text-gray-500" style>ikun@jzdjk.com</p>
+                  </div>
+                  <i
+                    class="fas fa-chevron-down text-xs text-gray-400 group-hover:text-primary transition-colors"
+                    data-ytindex="2"
+                    data-ytoriginindex="2"
+                    style
+                  >
+                  </i>
+                  <!-- 用户下拉菜单 -->
+                </div>
+              </div>
+            </div>
+            <!-- 用户下拉菜单 -->
+            <div
+              class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 hidden"
+              data-selectorname="#user-dropdown"
+              data-ytindex="0"
+              data-ytoriginindex="3"
+              data-ytparentvalue="extra-n6ux9h9cz"
+              id="user-dropdown"
+              style="opacity: 1; color: rgb(29, 33, 41); font-family: Inter, sans-serif; font-size: 16px; font-weight: 400; font-style: normal; line-height: 24px; text-align: start; text-indent: 0px;"
+            >
+              <a
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                href="javascript:void(0);"
+                style
+              >
+                <i class="fas fa-user mr-2"> </i>
+                个人中心
+              </a>
+              <a
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                href="javascript:void(0);"
+                style
+              >
+                <i class="fas fa-th-large mr-2" style> </i>
+                布局设置
+              </a>
+              <div class="border-t border-gray-100 my-1" style></div>
+              <a
+                class="block px-4 py-2 text-sm text-danger hover:bg-gray-100"
+                data-selectorname="a:last-child"
+                href="javascript:void(0);"
+                style
+              >
+                <i class="fas fa-sign-out-alt mr-2"> </i>
+                退出登录
+              </a>
+            </div>
+          </div>
+        </header>
+        <div
+          class="max-w-7xl mx-auto"
+          data-selectorname="#id-wv0yd"
+          data-ytextravalue="extra-h1s9qw5j1"
+          data-ytindex="2"
+          data-ytoriginindex="1"
+          data-ytparentvalue="extra-r3e01okug"
+          style="opacity: 1; color: rgb(29, 33, 41); font-family: Inter, sans-serif; font-size: 16px; font-weight: 400; font-style: normal; line-height: 24px; text-align: start; text-indent: 0px; left: -145px; position: relative;top:0px"
+        >
+          <!-- 页面标签栏 -->
+          <div
+            class="relative flex-1 max-w-[800px] overflow-x-auto scrollbar-hide mb-6 bg-white p-3 rounded-md"
+            style="top:-24px"
+          >
+            <div
+              class="flex space-x-1 min-w-max"
+              id="page-tabs"
+              style="left:-31px;position:relative"
+            >
+              <!-- 初始页面标签 -->
+              <div
+                class="flex items-center bg-primary/10 text-primary px-3 py-1.5 rounded-md text-sm"
+                data-ytextravalue="extra-jvx5nje4f"
+                style="left:15px;position:relative"
+              >
+                <span
+                  class
+                  data-selectorname="span"
+                  data-ytindex="0"
+                  data-ytoriginindex="0"
+                  data-ytparentvalue="extra-jvx5nje4f"
+                  style="opacity: 1; color: rgb(22, 93, 255); font-family: Inter, sans-serif; font-size: 14px; font-weight: 400; font-style: normal; line-height: 20px; text-align: start; text-indent: 0px;"
+                >
+                  控制台
+                </span>
+                <button
+                  class="ml-1 text-primary hover:text-primary/80 tab-close"
+                  data-ytindex="1"
+                  data-ytoriginindex="1"
+                >
+                  <i class="fas fa-times text-xs"> </i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- 页面标题 -->
+          <div
+            class="mb-6"
+            data-ytextravalue="extra-4btpatvxj"
+            data-ytindex="1"
+            data-ytoriginindex="0"
+            style
+          >
+            <h1
+              class="text-[clamp(1.5rem,3vw,2rem)] font-bold"
+              data-ytindex="0"
+              data-ytoriginindex="0"
+              data-ytparentvalue="extra-4btpatvxj"
+              style="top:-34px; position: relative"
+            >
+              控制台
+            </h1>
+            <p
+              class="text-gray-500 mt-1"
+              data-ytindex="1"
+              data-ytoriginindex="1"
+              style="top:-12px;position:relative"
+            >
+              欢迎回来，坤坤！这里是系统概览
+            </p>
+          </div>
+          <!-- 统计卡片区域 -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6"
+            data-ytindex="2"
+            data-ytoriginindex="1"
+            style
+          >
+            <!-- 设备总量 -->
+            <div class="stat-card" style>
+              <div class="stat-icon bg-primary/10 text-primary" style>
+                <i class="fas fa-microchip text-xl" style> </i>
+              </div>
+              <div style>
+                <p class="text-gray-500 text-sm" style>设备总量</p>
+                <h3 class="text-2xl font-bold mt-1" style>541</h3>
+                <div class="flex items-center mt-1 text-success text-xs">
+                  <i class="fas fa-arrow-up mr-1" style> </i>
+                  <span style> 2.4% 较上月 </span>
+                </div>
+              </div>
+            </div>
+            <!-- 在线设备 -->
+            <div class="stat-card" style>
+              <div class="stat-icon bg-success/10 text-success" style>
+                <i class="fas fa-wifi text-xl" style> </i>
+              </div>
+              <div style>
+                <p class="text-gray-500 text-sm" style>在线设备</p>
+                <h3 class="text-2xl font-bold mt-1" style>52</h3>
+                <div class="flex items-center mt-1 text-success text-xs">
+                  <i class="fas fa-arrow-up mr-1"> </i>
+                  <span style> 8.3% 较上月 </span>
+                </div>
+              </div>
+            </div>
+            <!-- 已激活设备 -->
+            <div class="stat-card" style>
+              <div class="stat-icon bg-warning/10 text-warning">
+                <i class="fas fa-check-circle text-xl"> </i>
+              </div>
+              <div style>
+                <p class="text-gray-500 text-sm" style>已激活设备</p>
+                <h3 class="text-2xl font-bold mt-1" style>375</h3>
+                <div class="flex items-center mt-1 text-success text-xs">
+                  <i class="fas fa-arrow-up mr-1"> </i>
+                  <span style> 5.1% 较上月 </span>
+                </div>
+              </div>
+            </div>
+            <!-- 未激活设备 -->
+            <div class="stat-card" style>
+              <div class="stat-icon bg-danger/10 text-danger" style>
+                <i class="fas fa-times-circle text-xl"> </i>
+              </div>
+              <div style>
+                <p class="text-gray-500 text-sm" style>未激活设备</p>
+                <h3 class="text-2xl font-bold mt-1" style>166</h3>
+                <div class="flex items-center mt-1 text-danger text-xs">
+                  <i class="fas fa-arrow-down mr-1" style> </i>
+                  <span style> 3.2% 较上月 </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 用户统计和图表区域 -->
+          <div
+            class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6"
+            data-ytindex="3"
+            data-ytoriginindex="3"
+            style
+          >
+            <!-- 用户总量卡片 -->
+            <div class="card lg:col-span-1" style>
+              <div class="flex justify-between items-center mb-4" style>
+                <h3 class="font-semibold" style>用户统计</h3>
+                <div class="text-sm text-gray-500" style>更新于 今天</div>
+              </div>
+              <div class="space-y-6" style>
+                <div class="flex justify-between items-center" style>
+                  <div>
+                    <p class="text-gray-500 text-sm">总用户量</p>
+                    <h4 class="text-3xl font-bold mt-1" style>971</h4>
+                  </div>
+                  <div
+                    class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center"
+                    style
+                  >
+                    <i class="fas fa-users text-primary text-2xl"> </i>
+                  </div>
+                </div>
+                <div class="space-y-4" style>
+                  <div style>
+                    <div class="flex justify-between text-sm mb-1" style>
+                      <span> 今日新增会员 </span>
+                      <span class="font-medium"> 0 </span>
+                    </div>
+                    <div
+                      class="w-full bg-gray-100 h-2 rounded-full overflow-hidden"
+                      style
+                    >
+                      <div
+                        class="bg-gray-300 h-full rounded-full"
+                        style="width: 0%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div style>
+                    <div class="flex justify-between text-sm mb-1" style>
+                      <span> 家庭版会员 </span>
+                      <span class="font-medium"> 28 </span>
+                    </div>
+                    <div
+                      class="w-full bg-gray-100 h-2 rounded-full overflow-hidden"
+                    >
+                      <div
+                        class="bg-secondary h-full rounded-full"
+                        style="width: 66%;"
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-sm mb-1" style>
+                      <span> 专家版会员 </span>
+                      <span class="font-medium" style> 14 </span>
+                    </div>
+                    <div
+                      class="w-full bg-gray-100 h-2 rounded-full overflow-hidden"
+                    >
+                      <div
+                        class="bg-warning h-full rounded-full"
+                        style="width: 34%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span> 管家版会员 </span>
+                    <span class="font-medium"> 8 </span>
+                  </div>
+                  <div
+                    class="w-full bg-gray-100 h-2 rounded-full overflow-hidden"
+                  >
+                    <div
+                      class="bg-primary h-full rounded-full"
+                      style="width: 19%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="pt-4 border-t border-gray-100" style>
+                  <div class="flex justify-between items-center" style>
+                    <div>
+                      <p class="text-gray-500 text-sm">有风险用户比例</p>
+                      <h4 class="text-xl font-bold mt-1">3%</h4>
+                    </div>
+                    <div
+                      class="w-16 h-16 rounded-full bg-danger/10 flex items-center justify-center"
+                    >
+                      <i
+                        class="fas fa-exclamation-triangle text-danger text-xl"
+                      >
+                      </i>
+                    </div>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-2" style>
+                    有疾病用户数量:
+                    <span class="text-danger font-medium"> 10 </span>
+                    人
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- 用户分布图表 -->
+            <div class="card lg:col-span-2" style>
+              <div class="flex justify-between items-center mb-4" style>
+                <h3 class="font-semibold" style>用户分布</h3>
+                <div class="flex gap-2" style>
+                  <button class="btn btn-outline text-xs" style>
+                    <i class="fas fa-download mr-1" style> </i>
+                    导出
+                  </button>
+                  <button class="btn btn-outline text-xs" style>
+                    <i class="fas fa-refresh mr-1" style> </i>
+                    刷新
+                  </button>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style>
+                <!-- 性别分布 -->
+                <div style>
+                  <h4 class="text-sm font-medium mb-3" style>用户性别分布</h4>
+                  <div
+                    _echarts_instance_="ec_1756431019421"
+                    class="w-full h-48"
+                    id="gender-chart"
+                    style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;"
+                  >
+                    <div
+                      style="position: relative; width: 391px; height: 192px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"
+                    >
+                      <canvas
+                        data-zr-dom-id="zr_0"
+                        height="192"
+                        style="position: absolute; left: 0px; top: 0px; width: 391px; height: 192px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"
+                        width="391"
+                      >
+                      </canvas>
+                    </div>
+                    <div
+                      class
+                      style='position: absolute; display: block; border-style: solid; white-space: nowrap; z-index: 9999999; box-shadow: rgba(0, 0, 0, 0.2) 1px 2px 10px; transition: opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.2s cubic-bezier(0.23, 1, 0.32, 1), transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); background-color: rgb(255, 255, 255); border-width: 1px; border-radius: 4px; color: rgb(102, 102, 102); font: 14px / 21px "Microsoft YaHei"; padding: 10px; top: 0px; left: 0px; transform: translate3d(256px, 57px, 0px); border-color: rgb(22, 93, 255); pointer-events: none; visibility: hidden; opacity: 0;'
+                    >
+                      <div style="margin: 0px 0 0;line-height:1;">
+                        <div
+                          style="font-size:14px;color:#666;font-weight:400;line-height:1;"
+                        >
+                          性别分布
+                        </div>
+                        <div style="margin: 10px 0 0;line-height:1;">
+                          <div style="margin: 0px 0 0;line-height:1;">
+                            <span
+                              style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#165DFF;"
+                            >
+                            </span>
+                            <span
+                              style="font-size:14px;color:#666;font-weight:400;margin-left:2px"
+                            >
+                              男性
+                            </span>
+                            <span
+                              style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900"
+                            >
+                              761
+                            </span>
+                            <div style="clear:both"></div>
+                          </div>
+                          <div style="clear:both"></div>
+                        </div>
+                        <div style="clear:both"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2 mt-3">
+                    <div class="flex items-center gap-2">
+                      <div class="w-3 h-3 rounded-full bg-primary"></div>
+                      <span class="text-xs text-gray-600" style>
+                        男性: 761人 (78%)
+                      </span>
+                    </div>
+                    <div class="flex items-center gap-2" style>
+                      <div class="w-3 h-3 rounded-full bg-secondary"></div>
+                      <span class="text-xs text-gray-600">
+                        女性: 210人 (22%)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- 人群分布 -->
+                <div style>
+                  <h4 class="text-sm font-medium mb-3" style>用户人群分布</h4>
+                  <div
+                    _echarts_instance_="ec_1756431019422"
+                    class="w-full h-48"
+                    id="risk-chart"
+                    style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;"
+                  >
+                    <div
+                      style="position: relative; width: 391px; height: 192px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"
+                    >
+                      <canvas
+                        data-zr-dom-id="zr_0"
+                        height="192"
+                        style="position: absolute; left: 0px; top: 0px; width: 391px; height: 192px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"
+                        width="391"
+                      >
+                      </canvas>
+                    </div>
+                    <div
+                      class
+                      style='position: absolute; display: block; border-style: solid; white-space: nowrap; z-index: 9999999; box-shadow: rgba(0, 0, 0, 0.2) 1px 2px 10px; transition: opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.2s cubic-bezier(0.23, 1, 0.32, 1); background-color: rgb(255, 255, 255); border-width: 1px; border-radius: 4px; color: rgb(102, 102, 102); font: 14px / 21px "Microsoft YaHei"; padding: 10px; top: 0px; left: 0px; transform: translate3d(228px, 50px, 0px); border-color: rgb(245, 63, 63); pointer-events: none; visibility: hidden; opacity: 0;'
+                    >
+                      <div style="margin: 0px 0 0;line-height:1;">
+                        <div
+                          style="font-size:14px;color:#666;font-weight:400;line-height:1;"
+                        >
+                          人群分布
+                        </div>
+                        <div style="margin: 10px 0 0;line-height:1;">
+                          <div style="margin: 0px 0 0;line-height:1;">
+                            <span
+                              style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#F53F3F;"
+                            >
+                            </span>
+                            <span
+                              style="font-size:14px;color:#666;font-weight:400;margin-left:2px"
+                            >
+                              高风险
+                            </span>
+                            <span
+                              style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900"
+                            >
+                              31
+                            </span>
+                            <div style="clear:both"></div>
+                          </div>
+                          <div style="clear:both"></div>
+                        </div>
+                        <div style="clear:both"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2 mt-3">
+                    <div class="flex items-center gap-2">
+                      <div class="w-3 h-3 rounded-full bg-danger"></div>
+                      <span class="text-xs text-gray-600">
+                        高风险: 31人 (3%)
+                      </span>
+                    </div>
+                    <div class="flex items-center gap-2" style>
+                      <div class="w-3 h-3 rounded-full bg-success"></div>
+                      <span class="text-xs text-gray-600">
+                        无风险: 938人 (97%)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            data-ytindex="4"
+            data-ytoriginindex="4"
+            style
+          >
+            <!-- 心脑梗风险等级饼图 -->
+            <div
+              class="bg-white rounded-xl p-5 card-shadow"
+              data-selectorname="#id-cyw5a"
+              data-ytindex="4"
+              data-ytoriginindex="4"
+              style
+            >
+              <div class="flex items-center justify-between mb-5">
+                <h3
+                  class="font-semibold text-lg"
+                  data-yteditvalue="心脑梗风险等级分布"
+                  style
+                >
+                  心脑梗风险等级分布
+                </h3>
+                <button
+                  class="text-gray-400 hover:text-gray-600"
+                  data-ytextravalue="extra-7a0s7wx8l"
+                >
+                  <i class="fas fa-ellipsis-v"> </i>
+                </button>
+              </div>
+              <div
+                _echarts_instance_="ec_1756431019424"
+                class="h-[300px] w-full flex items-center justify-center"
+                id="riskDistributionChart"
+                style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;"
+              >
+                <div
+                  style="position: relative; width: 588px; height: 300px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"
+                >
+                  <canvas
+                    data-zr-dom-id="zr_0"
+                    height="300"
+                    style="position: absolute; left: 0px; top: 0px; width: 588px; height: 300px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"
+                    width="588"
+                  >
+                  </canvas>
+                </div>
+                <div class></div>
+              </div>
+              <div class="grid grid-cols-2 gap-3 mt-4" style>
+                <div class="flex items-center" style>
+                  <div class="w-3 h-3 rounded-full bg-danger mr-2"></div>
+                  <span class="text-sm text-gray-600" style>
+                    高危: 386人 (3.0%)
+                  </span>
+                </div>
+                <div class="flex items-center" style>
+                  <div class="w-3 h-3 rounded-full bg-warning mr-2"></div>
+                  <span class="text-sm text-gray-600">
+                    中危: 1,243人 (9.7%)
+                  </span>
+                </div>
+                <div class="flex items-center" style>
+                  <div class="w-3 h-3 rounded-full bg-secondary mr-2"></div>
+                  <span class="text-sm text-gray-600">
+                    低危: 3,542 人(27.6%)
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- 心脑梗风险趋势图 -->
+            <div
+              class="bg-white rounded-xl p-5 card-shadow"
+              data-selectorname="#id-py3cz"
+              data-ytindex="2"
+              data-ytoriginindex="2"
+              data-ytparentvalue="extra-h1s9qw5j1"
+              style="opacity: 1; color: rgb(29, 33, 41); font-family: Inter, sans-serif; font-size: 16px; font-weight: 400; font-style: normal; line-height: 24px; text-align: start; text-indent: 0px;"
+            >
+              <div class="flex items-center justify-between mb-5">
+                <h3
+                  class="font-semibold text-lg"
+                  data-yteditvalue="心脑梗风险趋势综合分析"
+                >
+                  心脑梗风险趋势综合分析
+                </h3>
+                <div class="flex space-x-2">
+                  <button
+                    class="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary"
+                  >
+                    月度
+                  </button>
+                  <button
+                    class="px-3 py-1 text-sm rounded-full text-gray-500 hover:bg-gray-100 transition-bg"
+                  >
+                    季度
+                  </button>
+                  <button
+                    class="px-3 py-1 text-sm rounded-full text-gray-500 hover:bg-gray-100 transition-bg"
+                  >
+                    年度
+                  </button>
+                </div>
+              </div>
+              <div
+                _echarts_instance_="ec_1756431019423"
+                class="h-[300px] w-full"
+                id="riskTrendChart"
+                style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;"
+              >
+                <div
+                  style="position: relative; width: 588px; height: 300px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"
+                >
+                  <canvas
+                    data-zr-dom-id="zr_0"
+                    height="300"
+                    style="position: absolute; left: 0px; top: 0px; width: 588px; height: 300px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"
+                    width="588"
+                  >
+                  </canvas>
+                </div>
+                <div
+                  class
+                  style='position: absolute; display: block; border-style: solid; white-space: nowrap; z-index: 9999999; box-shadow: rgba(0, 0, 0, 0.2) 1px 2px 10px; transition: opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.2s cubic-bezier(0.23, 1, 0.32, 1), transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); background-color: rgb(255, 255, 255); border-width: 1px; border-radius: 4px; color: rgb(102, 102, 102); font: 14px / 21px "Microsoft YaHei"; padding: 10px; top: 0px; left: 0px; transform: translate3d(425px, 82px, 0px); border-color: rgb(255, 255, 255); pointer-events: none; visibility: hidden; opacity: 0;'
+                >
+                  <div style="margin: 0px 0 0;line-height:1;">
+                    <div style="margin: 0px 0 0;line-height:1;">
+                      <div
+                        style="font-size:14px;color:#666;font-weight:400;line-height:1;"
+                      >
+                        5月
+                      </div>
+                      <div style="margin: 10px 0 0;line-height:1;">
+                        <div style="margin: 0px 0 0;line-height:1;">
+                          <div style="margin: 0px 0 0;line-height:1;">
+                            <span
+                              style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#FF4D4F;"
+                            >
+                            </span>
+                            <span
+                              style="font-size:14px;color:#666;font-weight:400;margin-left:2px"
+                            >
+                              高危
+                            </span>
+                            <span
+                              style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900"
+                            >
+                              90
+                            </span>
+                            <div style="clear:both"></div>
+                          </div>
+                          <div style="clear:both"></div>
+                        </div>
+                        <div style="margin: 10px 0 0;line-height:1;">
+                          <div style="margin: 0px 0 0;line-height:1;">
+                            <span
+                              style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#FAAD14;"
+                            >
+                            </span>
+                            <span
+                              style="font-size:14px;color:#666;font-weight:400;margin-left:2px"
+                            >
+                              中危
+                            </span>
+                            <span
+                              style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900"
+                            >
+                              290
+                            </span>
+                            <div style="clear:both"></div>
+                          </div>
+                          <div style="clear:both"></div>
+                        </div>
+                        <div style="margin: 10px 0 0;line-height:1;">
+                          <div style="margin: 0px 0 0;line-height:1;">
+                            <span
+                              style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#13C2C2;"
+                            >
+                            </span>
+                            <span
+                              style="font-size:14px;color:#666;font-weight:400;margin-left:2px"
+                            >
+                              低危
+                            </span>
+                            <span
+                              style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900"
+                            >
+                              190
+                            </span>
+                            <div style="clear:both"></div>
+                          </div>
+                          <div style="clear:both"></div>
+                        </div>
+                        <div style="clear:both"></div>
+                      </div>
+                      <div style="clear:both"></div>
+                    </div>
+                    <div style="clear:both"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 病种排名 -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-6"
+            data-ytextravalue="extra-ifvrvzwn8"
+            data-ytindex="5"
+            data-ytoriginindex="5"
+            style
+          >
+            <!-- 单病种排名 -->
+            <!-- 单病种排名 -->
+            <div
+              class="card"
+              data-ytindex="0"
+              data-ytoriginindex="0"
+              style="top:24px;position:relative"
+            >
+              <div class="flex justify-between items-center mb-4" style>
+                <h3 class="font-semibold">单病种排名</h3>
+                <span
+                  class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full"
+                  style
+                >
+                  本月
+                </span>
+              </div>
+              <div class="space-y-4" style>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  style
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary"
+                    style="left:-11px;position:relative"
+                  >
+                    <i
+                      class="fas fa-heartbeat text-sm"
+                      style="left:0px;position:relative"
+                    >
+                    </i>
+                  </div>
+                  <div class="flex-1" style="left:-9px;position:relative">
+                    <div class="flex justify-between text-sm" style>
+                      <span> 高血压 </span>
+                      <span class="font-medium"> 29% </span>
+                    </div>
+                    <div
+                      class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden mt-1"
+                    >
+                      <div
+                        class="bg-primary h-full rounded-full"
+                        style="width: 29%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-3"
+                  style="top:-9px;position:relative"
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary"
+                    style
+                  >
+                    <i class="fas fa-brain text-sm"> </i>
+                  </div>
+                  <div class="flex-1" style>
+                    <div class="flex justify-between text-sm" style>
+                      <span> 脑卒中 </span>
+                      <span class="font-medium"> 18% </span>
+                    </div>
+                    <div
+                      class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden mt-1"
+                      style
+                    >
+                      <div
+                        class="bg-secondary h-full rounded-full"
+                        style="width: 18%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-3"
+                  style="top:-9px;position:relative"
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-warning/10 flex items-center justify-center text-warning"
+                  >
+                    <i class="fas fa-tint text-sm"> </i>
+                  </div>
+                  <div class="flex-1" style>
+                    <div class="flex justify-between text-sm" style>
+                      <span> 家族性高脂血症 </span>
+                      <span class="font-medium"> 18% </span>
+                    </div>
+                    <div
+                      class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden mt-1"
+                    >
+                      <div
+                        class="bg-warning h-full rounded-full"
+                        style="width: 18%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-3"
+                  style="top:-9px;position:relative"
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-danger/10 flex items-center justify-center text-danger"
+                    style
+                  >
+                    <i class="fas fa-weight text-sm"> </i>
+                  </div>
+                  <div class="flex-1" style>
+                    <div class="flex justify-between text-sm" style>
+                      <span> 肥胖 (BMI > 30) </span>
+                      <span class="font-medium" style> 18% </span>
+                    </div>
+                    <div
+                      class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden mt-1"
+                      style
+                    >
+                      <div
+                        class="bg-danger h-full rounded-full"
+                        style="width: 18%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-3"
+                  style="top:-9px;position:relative"
+                >
+                  <div
+                    class="w-8 h-8 rounded-full bg-info/10 flex items-center justify-center text-info"
+                    style
+                  >
+                    <i class="fas fa-heart text-sm"> </i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="flex justify-between text-sm" style>
+                      <span> 冠心病 </span>
+                      <span class="font-medium"> 18% </span>
+                    </div>
+                    <div
+                      class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden mt-1"
+                      style
+                    >
+                      <div
+                        class="bg-info h-full rounded-full"
+                        style="width: 18%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 用户操作日志 -->
+            <div
+              class="card"
+              data-ytindex="1"
+              data-ytoriginindex="1"
+              style="top:24px;position:relative"
+            >
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="font-semibold">用户操作日志</h3>
+                <button class="text-primary text-sm hover:underline">
+                  查看全部
+                  <i class="fas fa-angle-right ml-1"> </i>
+                </button>
+              </div>
+              <div
+                class="space-y-4 max-h-80 overflow-y-auto pr-2 scrollbar-hide"
+              >
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <div
+                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"
+                  >
+                    <i class="fas fa-user-plus text-sm"> </i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm">
+                      <span class="font-medium"> 用户 "露出鸡脚" </span>
+                      注册了账号
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1">今天 09:42</p>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <div
+                    class="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center text-success flex-shrink-0"
+                  >
+                    <i class="fas fa-file-medical text-sm"> </i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm">
+                      <span class="font-medium"> 用户 "梨最好食" </span>
+                      完成了健康报告
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1">昨天 16:20</p>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <div
+                    class="w-10 h-10 rounded-full bg-warning/10 flex items-center justify-center text-warning flex-shrink-0"
+                  >
+                    <i class="fas fa-exclamation-triangle text-sm"> </i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm">
+                      <span class="font-medium"> 系统警报 </span>
+                      设备 "HC-2023-058" 连接异常
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1">昨天 14:35</p>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <div
+                    class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary flex-shrink-0"
+                  >
+                    <i class="fas fa-credit-card text-sm"> </i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm">
+                      <span class="font-medium"> 用户 "全民制作人" </span>
+                      购买了专家版会员
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1">2023-11-28 10:15</p>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <div
+                    class="w-10 h-10 rounded-full bg-danger/10 flex items-center justify-center text-danger flex-shrink-0"
+                  >
+                    <i class="fas fa-heartbeat text-sm"> </i>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm">
+                      <span class="font-medium"> 健康警报 </span>
+                      用户 "赵六" 血压异常升高
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1">2023-11-27 18:40</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 报警列表 -->
+            <div
+              class="card"
+              data-ytindex="2"
+              data-ytoriginindex="0"
+              data-ytparentvalue="extra-8xrh58shj"
+              style="opacity: 1; color: rgb(29, 33, 41); font-family: Inter, sans-serif; font-size: 16px; font-weight: 400; font-style: normal; line-height: 24px; text-align: start; text-indent: 0px;left:1293px;position:relative; width: 300px;top:-1529px; height: 800px;"
+            >
+              <div class="flex justify-between items-center mb-4" style>
+                <h3 class="font-semibold" style>报警列表</h3>
+                <button class="text-primary text-sm hover:underline" style>
+                  查看全部报警
+                  <i class="fas fa-angle-right ml-1"> </i>
+                </button>
+              </div>
+              <div
+                class="space-y-4 max-h-[700px] overflow-y-auto pr-2 scrollbar-hide"
+                data-ytextravalue="extra-6tkxdnabc"
+                style
+              >
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  data-ytindex="0"
+                  data-ytoriginindex="0"
+                  style
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/ElOL6CsLJEqXFdxdzsScp.jpeg"
+                    style
+                  />
+                  <div class="flex-1 min-w-0" style>
+                    <div class="flex justify-between items-start" style>
+                      <div class="flex items-center" style>
+                        <p class="text-sm font-medium" style>真爱粉</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full" style>
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1" style>
+                      手机号: 138****5678
+                    </p>
+                    <div class="flex justify-between items-center" style>
+                      <p class="text-xs text-gray-500" style>
+                        报警时间: 今天 09:42
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  data-ytindex="1"
+                  data-ytoriginindex="1"
+                  data-ytparentvalue="extra-6tkxdnabc"
+                  style="opacity: 1;"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/LdaaqEnMqZsxWaenvpZgM.png"
+                    style
+                  />
+                  <div class="flex-1 min-w-0" style>
+                    <div class="flex justify-between items-start" style>
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium" style>小黑子</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1" style>
+                      手机号: 139****1234
+                    </p>
+                    <div class="flex justify-between items-center" style>
+                      <p class="text-xs text-gray-500" style>
+                        报警时间: 昨天 16:20
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  data-ytindex="2"
+                  data-ytoriginindex="2"
+                  data-ytparentvalue="extra-6tkxdnabc"
+                  style="opacity: 1;"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/3Wg0ubpV21joFDjhHfhpY.jpg"
+                    style
+                  />
+                  <div class="flex-1 min-w-0" style>
+                    <div class="flex justify-between items-start" style>
+                      <div class="flex items-center" style>
+                        <p class="text-sm font-medium" style>忠实粉丝</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full" style>
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1" style>
+                      手机号: 137****8901
+                    </p>
+                    <div class="flex justify-between items-center" style>
+                      <p class="text-xs text-gray-500" style>
+                        报警时间: 昨天 14:35
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  data-ytindex="3"
+                  data-ytoriginindex="3"
+                  style
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/mLOKvgHPl_OQJNEoVh-mr.jpg"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start" style>
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">Ikun</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 136****2345
+                    </p>
+                    <div
+                      class="flex justify-between items-center"
+                      data-ytextravalue="extra-3zq7oephy"
+                    >
+                      <p
+                        class="text-xs text-gray-500"
+                        data-ytindex="0"
+                        data-ytoriginindex="0"
+                      >
+                        报警时间: 2023-11-28 10:15
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        data-ytindex="1"
+                        data-ytoriginindex="1"
+                        data-ytparentvalue="extra-3zq7oephy"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  data-ytindex="4"
+                  data-ytoriginindex="4"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/dda4RZ4HwTFLu79GPwymn.jpg"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">干柿鬼鸡</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 135****6789
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <p class="text-xs text-gray-500">
+                        报警时间: 2023-11-27 18:40
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/-F-gCT7zgk4xDNmjtZE1p.jpeg"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">鸡你太美</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 134****4321
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <p class="text-xs text-gray-500">
+                        报警时间: 2023-11-26 16:20
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/DLMy9EjfL609Lv5K9orq6.jpg"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">练习时长两年半</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 133****8765
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <p class="text-xs text-gray-500">
+                        报警时间: 2023-11-25 14:35
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/dH0OfoncqEWmTtdZhY85Y.jpg"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">唱跳rap篮球</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 132****9876
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <p class="text-xs text-gray-500">
+                        报警时间: 2023-11-24 10:15
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/mLOKvgHPl_OQJNEoVh-mr.jpg"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">只因你太美</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 131****5432
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <p class="text-xs text-gray-500">
+                        报警时间: 2023-11-23 09:42
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/3Wg0ubpV21joFDjhHfhpY.jpg"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">律师函警告</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 130****1234
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <p class="text-xs text-gray-500">
+                        报警时间: 2023-11-22 18:40
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/ElOL6CsLJEqXFdxdzsScp.jpeg"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">小黑子露出鸡脚了</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 139****8765
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <p class="text-xs text-gray-500">
+                        报警时间: 2023-11-21 16:20
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/LdaaqEnMqZsxWaenvpZgM.png"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">我是练习生</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 138****4321
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <p class="text-xs text-gray-500">
+                        报警时间: 2023-11-20 14:35
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/mLOKvgHPl_OQJNEoVh-mr.jpg"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">全民制作人</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 137****9876
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <p class="text-xs text-gray-500">
+                        报警时间: 2023-11-19 10:15
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/3Wg0ubpV21joFDjhHfhpY.jpg"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">鸡你实在是太美</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 136****5432
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <p class="text-xs text-gray-500">
+                        报警时间: 2023-11-18 09:42
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <img
+                    alt="用户头像"
+                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    src="./api/upload/appResource/dda4RZ4HwTFLu79GPwymn.jpg"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                      <div class="flex items-center">
+                        <p class="text-sm font-medium">你干嘛哎哟</p>
+                        <span class="ml-2 w-2 h-2 bg-danger rounded-full">
+                        </span>
+                      </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                      手机号: 135****1234
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <p class="text-xs text-gray-500">
+                        报警时间: 2023-11-17 18:40
+                      </p>
+                      <a
+                        class="text-xs text-primary hover:underline whitespace-nowrap"
+                        href="javascript:void(0);"
+                      >
+                        查看详情
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 报警列表 -->
+          </div>
+          <!-- 最近活动和风险用户 -->
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            data-ytextravalue="extra-8xrh58shj"
+            data-ytindex="6"
+            data-ytoriginindex="6"
+            style
+          ></div>
+        </div>
+        <!-- 快捷入口 -->
+        <div class="mt-8" data-ytindex="3" data-ytoriginindex="7">
+          <div class="card" style>
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="font-semibold">快捷入口</h3>
+            </div>
+            <div
+              class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4"
+            >
+              <!-- 客户沟通 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3"
+                >
+                  <i class="fas fa-comments text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 客户沟通 </span>
+              </a>
+              <!-- 用户列表 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-3"
+                >
+                  <i class="fas fa-user-friends text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 用户列表 </span>
+              </a>
+              <!-- 弹窗管理 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-warning/10 flex items-center justify-center text-warning mb-3"
+                >
+                  <i class="fas fa-bullhorn text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 弹窗管理 </span>
+              </a>
+              <!-- 报警列表 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-danger/10 flex items-center justify-center text-danger mb-3"
+                >
+                  <i class="fas fa-exclamation-triangle text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 报警列表 </span>
+              </a>
+              <!-- 医生列表 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-info/10 flex items-center justify-center text-info mb-3"
+                >
+                  <i class="fas fa-user-md text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 医生列表 </span>
+              </a>
+              <!-- 文章列表 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center text-success mb-3"
+                >
+                  <i class="fas fa-newspaper text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 文章列表 </span>
+              </a>
+              <!-- 医疗用户列表 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3"
+                >
+                  <i class="fas fa-user-nurse text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 医疗用户列表 </span>
+              </a>
+              <!-- 设备列表 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-3"
+                >
+                  <i class="fas fa-microchip text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 设备列表 </span>
+              </a>
+              <!-- Banner管理 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-warning/10 flex items-center justify-center text-warning mb-3"
+                >
+                  <i class="fas fa-images text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> Banner管理 </span>
+              </a>
+              <!-- 标签管理 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-danger/10 flex items-center justify-center text-danger mb-3"
+                >
+                  <i class="fas fa-tags text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 标签管理 </span>
+              </a>
+              <!-- 图片管理 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-info/10 flex items-center justify-center text-info mb-3"
+                >
+                  <i class="fas fa-camera text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 图片管理 </span>
+              </a>
+              <!-- 医生管理 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center text-success mb-3"
+                >
+                  <i class="fas fa-user-doctor text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 医生管理 </span>
+              </a>
+              <!-- 操作日志 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3"
+                >
+                  <i class="fas fa-history text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 操作日志 </span>
+              </a>
+              <!-- 登录日志 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-3"
+                >
+                  <i class="fas fa-sign-in-alt text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 登录日志 </span>
+              </a>
+              <!-- 会员列表 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-warning/10 flex items-center justify-center text-warning mb-3"
+                >
+                  <i class="fas fa-crown text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 会员列表 </span>
+              </a>
+              <!-- 启动页管理 -->
+              <a
+                class="flex flex-col items-center p-4 border border-gray-100 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                href="javascript:void(0);"
+              >
+                <div
+                  class="w-12 h-12 rounded-full bg-danger/10 flex items-center justify-center text-danger mb-3"
+                >
+                  <i class="fas fa-home text-xl"> </i>
+                </div>
+                <span class="text-sm font-medium"> 启动页管理 </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- JavaScript -->
+    <script>
+      // 页面加载时初始化渲染
+              document.addEventListener('DOMContentLoaded', () => {
+                  // 侧边栏切换
+                  const sidebarToggle = document.getElementById('sidebar-toggle');
+                  const sidebar = document.getElementById('sidebar');
+                  const menuCollapse = document.getElementById('menu-collapse');
+                  const contentRefresh = document.getElementById('content-refresh');
+                  const currentPageTitle = document.getElementById('current-page-title');
+                  let sidebarCollapsed = false;
+
+                  // 移动端侧边栏切换
+                  sidebarToggle.addEventListener('click', () => {
+                      sidebar.classList.toggle('-translate-x-full');
+                  });
+
+                  // 桌面端侧边栏收起/展开
+                  menuCollapse.addEventListener('click', () => {
+                      sidebarCollapsed = !sidebarCollapsed;
+                      if (sidebarCollapsed) {
+                          sidebar.classList.add('w-20');
+                          sidebar.classList.remove('w-64');
+                          menuCollapse.innerHTML = `
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <i class="fas fa-angle-right text-xl">
+      </i>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      `;
+                          // 隐藏侧边栏文字
+      document.querySelectorAll('.sidebar-item span').forEach(span => {
+                              span.classList.add('hidden');
+                          });
+                          document.getElementById('software-name').classList.add('hidden');
+                      } else {
+                          sidebar.classList.remove('w-20');
+                          sidebar.classList.add('w-64');
+                          menuCollapse.innerHTML = `
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <i class="fas fa-angle-left text-xl">
+      </i>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      `;
+                          // 显示侧边栏文字
+      document.querySelectorAll('.sidebar-item span').forEach(span => {
+                              span.classList.remove('hidden');
+                          });
+                          document.getElementById('software-name').classList.remove('hidden');
+                      }
+                  });
+
+                  // 内容刷新按钮
+                  contentRefresh.addEventListener('click', () => {
+                      // 显示加载状态
+                      contentRefresh.innerHTML = `
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <i class="fas fa-spinner fa-spin text-xl">
+      </i>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      `;
+
+                      // 模拟刷新延迟
+                      setTimeout(() => {
+                          contentRefresh.innerHTML = `
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <i class="fas fa-sync-alt text-xl">
+      </i>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      `;
+                          // 可以在这里添加实际的内容刷新逻辑
+                      }, 800);
+                  });
+
+                  // 点击主内容区关闭侧边栏（在移动设备上）
+                  const mainContent = document.querySelector('main');
+                  mainContent.addEventListener('click', () => {
+                      if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
+                          sidebar.classList.add('-translate-x-full');
+                      }
+                  });
+
+      // 更新当前页面标题
+                  function updatePageTitle() {
+                      const activeItem = document.querySelector('.sidebar-item.active span');
+                      if (activeItem) {
+                          currentPageTitle.textContent = activeItem.textContent;
+                          addPageTab(activeItem.textContent);
+                      }
+                  }
+
+                  // 添加页面标签
+                  function addPageTab(title) {
+                      const pageTabs = document.getElementById('page-tabs');
+                      const existingTab = Array.from(pageTabs.children).find(tab =>
+                          tab.querySelector('span').textContent === title
+                      );
+
+                      if (!existingTab) {
+                          const newTab = document.createElement('div');
+                          newTab.className = 'flex items-center bg-primary/10 text-primary px-3 py-1.5 rounded-md text-sm';
+                          newTab.innerHTML = `
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <span>${title}</span>
+        <button class="ml-1 text-primary hover:text-primary/80 tab-close">
+          <i class="fas fa-times text-xs">
+          </i>
+        </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      `;
+
+                          // 关闭按钮事件
+                          newTab.querySelector('.tab-close').addEventListener('click', (e) => {
+                              e.stopPropagation();
+                              if (pageTabs.children.length > 1) {
+                                  newTab.remove();
+                                  // 切换到最后一个标签
+                                  const lastTab = pageTabs.lastElementChild;
+                                  if (lastTab) {
+                                      const tabTitle = lastTab.querySelector('span').textContent;
+                                      document.querySelectorAll('.sidebar-item').forEach(item => {
+                                          if (item.querySelector('span').textContent === tabTitle) {
+                                              item.click();
+                                          }
+                                      });
+                                  }
+                              }
+                          });
+
+                          pageTabs.appendChild(newTab);
+                      }
+                  }
+
+                  // 初始更新页面标题
+                  updatePageTitle();
+
+                  // 初始化性别分布图表
+                  const genderChart = echarts.init(document.getElementById('gender-chart'));
+                  const genderOption = {
+                      tooltip: {
+                          trigger: 'item'
+                      },
+                      legend: {
+                          show: false
+                      },
+                      series: [
+                          {
+                              name: '性别分布',
+                              type: 'pie',
+                              radius: ['40%', '70%'],
+                              avoidLabelOverlap: false,
+                              itemStyle: {
+                                  borderRadius: 4,
+                                  borderColor: '#fff',
+                                  borderWidth: 2
+                              },
+                              label: {
+                                  show: false,
+                                  position: 'center'
+                              },
+                              emphasis: {
+                                  label: {
+                                      show: true,
+                                      fontSize: 16,
+                                      fontWeight: 'bold'
+                                  }
+                              },
+                              labelLine: {
+                                  show: false
+                              },
+                              data: [
+                                  { value: 761, name: '男性', itemStyle: { color: '#165DFF' } },
+                                  { value: 210, name: '女性', itemStyle: { color: '#36CFC9' } }
+                              ]
+                          }
+                      ]
+                  };
+                  genderChart.setOption(genderOption);
+
+                  // 初始化风险分布图表
+                  const riskChart = echarts.init(document.getElementById('risk-chart'));
+                  const riskOption = {
+                      tooltip: {
+                          trigger: 'item'
+                      },
+                      legend: {
+                          show: false
+                      },
+                      series: [
+                          {
+                              name: '人群分布',
+                              type: 'pie',
+                              radius: ['40%', '70%'],
+                              avoidLabelOverlap: false,
+                              itemStyle: {
+                                  borderRadius: 4,
+                                  borderColor: '#fff',
+                                  borderWidth: 2
+                              },
+                              label: {
+                                  show: false,
+                                  position: 'center'
+                              },
+                              emphasis: {
+                                  label: {
+                                      show: true,
+                                      fontSize: 16,
+                                      fontWeight: 'bold'
+                                  }
+                              },
+                              labelLine: {
+                                  show: false
+                              },
+                              data: [
+                                  { value: 31, name: '高风险', itemStyle: { color: '#F53F3F' } },
+                                  { value: 938, name: '无风险', itemStyle: { color: '#00B42A' } }
+                              ]
+                          }
+                      ]
+                  };
+                  riskChart.setOption(riskOption);
+
+      // 初始化心脑梗风险趋势图
+                  const riskTrendChart = echarts.init(document.getElementById('riskTrendChart'));
+                  const trendOption = {
+                      tooltip: {
+                          trigger: 'axis'
+                      },
+                      legend: {
+                          data: ['高危', '中危', '低危']
+                      },
+                      grid: {
+                          left: '3%',
+                          right: '4%',
+                          bottom: '3%',
+                          containLabel: true
+                      },
+                      xAxis: {
+                          type: 'category',
+                          boundaryGap: false,
+                          data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月']
+                      },
+                      yAxis: {
+                          type: 'value'
+                      },
+                      series: [
+                          {
+                              name: '高危',
+                              type: 'line',
+                              stack: '总量',
+                              data: [120, 132, 101, 134, 90, 230, 345],
+                              itemStyle: { color: '#FF4D4F' }
+                          },
+                          {
+                              name: '中危',
+                              type: 'line',
+                              stack: '总量',
+                              data: [220, 182, 191, 234, 290, 330, 1150],
+                              itemStyle: { color: '#FAAD14' }
+                          },
+                          {
+                              name: '低危',
+                              type: 'line',
+                              stack: '总量',
+                              data: [150, 232, 201, 154, 190, 330, 3400],
+                              itemStyle: { color: '#13C2C2' }
+                          }
+                      ]
+                  };
+                  riskTrendChart.setOption(trendOption);
+
+                  // 初始化心脑梗风险等级饼图
+                  const riskDistributionChart = echarts.init(document.getElementById('riskDistributionChart'));
+                  const pieOption = {
+                      tooltip: {
+                          trigger: 'item'
+                      },
+                      legend: {
+                          orient: 'vertical',
+                          left: 10
+                      },
+                      series: [
+                          {
+                              name: '风险等级',
+                              type: 'pie',
+                              radius: ['40%', '70%'],
+                              avoidLabelOverlap: false,
+                              itemStyle: {
+                                  borderRadius: 10,
+                                  borderColor: '#fff',
+                                  borderWidth: 2
+                              },
+                              label: {
+                                  show: false,
+                                  position: 'center'
+                              },
+                              emphasis: {
+                                  label: {
+                                      show: true,
+                                      fontSize: 30,
+                                      fontWeight: 'bold'
+                                  }
+                              },
+                              labelLine: {
+                                  show: false
+                              },
+                              data: [
+                                  { value: 386, name: '高危', itemStyle: { color: '#FF4D4F' } },
+                                  { value: 1243, name: '中危', itemStyle: { color: '#FAAD14' } },
+                                  { value: 3542, name: '低危', itemStyle: { color: '#13C2C2' } }
+                              ]
+                          }
+                      ]
+                  };
+                  riskDistributionChart.setOption(pieOption);
+
+                  // 窗口大小变化时重绘图表
+                  window.addEventListener('resize', () => {
+                      genderChart.resize();
+                      riskChart.resize();
+                      riskTrendChart.resize();
+                      riskDistributionChart.resize();
+                  });
+
+      // 侧边栏菜单项点击效果
+                  const sidebarItems = document.querySelectorAll('.sidebar-item');
+      sidebarItems.forEach(item => {
+                      item.addEventListener('click', () => {
+                          // 移除所有active类
+                          sidebarItems.forEach(i => i.classList.remove('active'));
+                          // 给当前点击项添加active类
+                          item.classList.add('active');
+                          // 更新页面标题和标签
+                          updatePageTitle();
+                      });
+                  });
+
+                  // 心脑梗风险管理二级菜单交互
+                  const heartMenu = document.getElementById('heartMenu');
+                  const heartMenuIcon = document.getElementById('heartMenuIcon');
+                  const heartSubMenu = heartMenu.querySelector('div');
+                  let menuOpen = false;
+
+      // 点击下拉三角控制菜单展开/收起
+                  heartMenuIcon.addEventListener('click', (e) => {
+                      e.stopPropagation();
+                      menuOpen = !menuOpen;
+                      if (menuOpen) {
+                          heartSubMenu.classList.remove('hidden');
+                          heartMenuIcon.classList.add('rotate-180');
+                      } else {
+                          heartSubMenu.classList.add('hidden');
+                          heartMenuIcon.classList.remove('rotate-180');
+                      }
+                  });
+
+                  // 点击菜单项本身不触发菜单收起/展开
+      heartMenu.addEventListener('click', (e) => {
+                      if (e.target !== heartMenuIcon && !heartMenuIcon.contains(e.target)) {
+                          // 切换菜单展开/收起状态
+                          menuOpen = !menuOpen;
+                          if (menuOpen) {
+                              heartSubMenu.classList.remove('hidden');
+                              heartMenuIcon.classList.add('rotate-180');
+                          } else {
+                              heartSubMenu.classList.add('hidden');
+                              heartMenuIcon.classList.remove('rotate-180');
+                          }
+
+                          // 保持原有的菜单项点击逻辑
+                          sidebarItems.forEach(i => i.classList.remove('active'));
+                          heartMenu.classList.add('active');
+                          updatePageTitle();
+                      }
+                  });
+
+                  // 二级菜单项点击事件
+                  document.querySelectorAll('.menu-item').forEach(item => {
+                      item.addEventListener('click', (e) => {
+                          e.stopPropagation();
+                          const title = item.getAttribute('data-title');
+                          // 更新页面标题和标签
+                          currentPageTitle.textContent = title;
+                          addPageTab(title);
+
+                          // 关闭二级菜单
+                          menuOpen = false;
+                          heartSubMenu.classList.add('hidden');
+                          heartMenuIcon.classList.remove('rotate-180');
+                      });
+                  });
+
+                  // 页面标签点击事件委托
+                  document.getElementById('page-tabs').addEventListener('click', (e) => {
+                      const tab = e.target.closest('div[class*="flex items-center bg-primary/10"]');
+                      if (tab) {
+                          const tabTitle = tab.querySelector('span').textContent;
+                          // 查找并点击对应的侧边栏项
+                          document.querySelectorAll('.sidebar-item').forEach(item => {
+                              if (item.querySelector('span').textContent === tabTitle) {
+                                  item.click();
+                              }
+                          });
+                      }
+                  });
+
+                  // 用户下拉菜单交互
+                  const userMenu = document.querySelector('.flex.items-center.gap-3.cursor-pointer.group');
+                  const userDropdown = document.getElementById('user-dropdown');
+
+                  // 点击用户区域切换下拉菜单显示状态
+                  userMenu.addEventListener('click', (e) => {
+                      e.stopPropagation(); // 阻止事件冒泡
+                      userDropdown.classList.toggle('hidden');
+                  });
+
+                  // 点击页面其他区域关闭下拉菜单
+                  document.addEventListener('click', () => {
+                      userDropdown.classList.add('hidden');
+                  });
+
+                  // 点击下拉菜单内部不关闭菜单
+                  userDropdown.addEventListener('click', (e) => {
+                      e.stopPropagation();
+                  });
+
+                  // 退出登录功能
+                  const logoutBtn = userDropdown.querySelector('a:last-child');
+                  logoutBtn.addEventListener('click', () => {
+                      if (confirm('确定要退出登录吗？')) {
+                          // 这里添加退出登录逻辑
+                          alert('退出登录成功！');
+                      }
+      // 全屏功能实现
+                  const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+                  fullscreenBtn.addEventListener('click', () => {
+                      if (!document.fullscreenElement) {
+                          document.documentElement.requestFullscreen().catch(err => {
+                              console.error(`全屏请求失败: ${err.message}`);
+                          });
+                          fullscreenBtn.innerHTML = `
+
+
+
+
+      <i class="fas fa-compress text-xl" style="">
+      </i>
+
+
+
+
+      `;
+                      } else {
+                          if (document.exitFullscreen) {
+                              document.exitFullscreen();
+                              fullscreenBtn.innerHTML = `
+
+
+
+
+      <i class="fas fa-expand text-xl" style="">
+      </i>
+
+
+
+
+      `;
+                          }
+                      }
+                  });
+
+                  // 监听全屏状态变化
+                  document.addEventListener('fullscreenchange', () => {
+                      if (!document.fullscreenElement) {
+                          fullscreenBtn.innerHTML = `
+
+
+
+
+      <i class="fas fa-expand text-xl" style="">
+      </i>
+
+
+
+
+      `;
+                      } else {
+                          fullscreenBtn.innerHTML = `
+
+
+
+
+      <i class="fas fa-compress text-xl" style="">
+      </i>
+
+
+
+
+      `;
+                      }
+                  });
+
+                  // 布局大小选择功能
+                  const layoutSizeBtn = document.getElementById('layout-size-btn');
+                  const layoutDropdown = document.getElementById('layout-dropdown');
+
+                  layoutSizeBtn.addEventListener('click', (e) => {
+                      e.stopPropagation();
+                      layoutDropdown.classList.toggle('hidden');
+                  });
+
+                  // 点击其他区域关闭下拉菜单
+                  document.addEventListener('click', () => {
+                      layoutDropdown.classList.add('hidden');
+                  });
+
+                  // 布局大小选项点击事件
+                  document.querySelectorAll('#layout-dropdown a').forEach(item => {
+                      item.addEventListener('click', (e) => {
+                          e.stopPropagation();
+                          const size = item.getAttribute('data-size');
+                          // 这里可以根据选择的大小应用不同的布局样式
+                          console.log(`选择了${item.textContent}`);
+
+                          // 简单示例：根据选择的布局大小修改主内容区的padding
+                          const mainContent = document.querySelector('main');
+                          switch(size) {
+                              case 'default':
+                                  mainContent.classList.remove('p-4', 'p-3', 'p-2');
+                                  mainContent.classList.add('p-6');
+                                  break;
+                              case 'medium':
+                                  mainContent.classList.remove('p-6', 'p-3', 'p-2');
+                                  mainContent.classList.add('p-4');
+                                  break;
+                              case 'small':
+                                  mainContent.classList.remove('p-6', 'p-4', 'p-2');
+                                  mainContent.classList.add('p-3');
+                                  break;
+                              case 'mini':
+                                  mainContent.classList.remove('p-6', 'p-4', 'p-3');
+                                  mainContent.classList.add('p-2');
+                                  break;
+                          }
+
+                          layoutDropdown.classList.add('hidden');
+                      });
+                  });
+
+                  // 关于我们模态框交互
+                  const aboutBtn = document.getElementById('about-btn');
+                  const aboutModal = document.getElementById('about-modal');
+                  const closeModal = document.getElementById('close-modal');
+                  const confirmModal = document.getElementById('confirm-modal');
+
+                  // 打开模态框
+                  aboutBtn.addEventListener('click', () => {
+                      aboutModal.classList.remove('hidden');
+                  });
+
+                  // 关闭模态框的函数
+                  const closeModalFunc = () => {
+                      aboutModal.classList.add('hidden');
+                  };
+
+                  // 点击关闭按钮关闭模态框
+                  closeModal.addEventListener('click', closeModalFunc);
+
+                  // 点击确定按钮关闭模态框
+                  confirmModal.addEventListener('click', closeModalFunc);
+
+                  // 点击模态框外部关闭模态框
+                  aboutModal.addEventListener('click', (e) => {
+                      if (e.target === aboutModal) {
+                          closeModalFunc();
+                      }
+                  });
+
+                  // 按ESC键关闭模态框
+                  document.addEventListener('keydown', (e) => {
+                      if (e.key === 'Escape' && !aboutModal.classList.contains('hidden')) {
+                          closeModalFunc();
+                      }
+                  });
+              });
+              });
+    </script>
+    <!-- 关于我们模态框 -->
+    <div
+      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden"
+      id="about-modal"
+    >
+      <div
+        class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 transform transition-all"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-bold text-gray-800">关于我们</h3>
+          <button class="text-gray-500 hover:text-gray-700" id="close-modal">
+            <i class="fas fa-times text-xl"> </i>
+          </button>
+        </div>
+        <div class="space-y-4 text-gray-600">
+          <div>
+            <p class="text-sm text-gray-500">发布版本</p>
+            <p class="font-medium">V1</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">完整版本</p>
+            <p class="font-medium">V1.0.16</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">注册人</p>
+            <p class="font-medium">橘子大健康科技（湖南）有限公司</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">受托生产商</p>
+            <p class="font-medium">ikun集团有限公司</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">注册证编号</p>
+            <p class="font-medium">-</p>
+          </div>
+        </div>
+        <div class="mt-6 flex justify-end">
+          <button class="btn btn-primary" id="confirm-modal">确定</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
